@@ -1,0 +1,65 @@
+import {lerp} from "./utilit";
+
+class Road{
+  constructor(x,width, lanecount = 3){
+    this.x = x;
+    this.width = width;
+    this.lanecount = lanecount;
+
+
+    this.left = x-width/2;
+    this.right = x+width/2;
+
+    const infinity = 1000000;
+    this.top = -infinity;
+    this.bottom = infinity;
+    
+    const topLeft={x:this.left,y:this.top};
+    const topRight={x:this.right,y:this.top};
+    const bottomLeft={x:this.left,y:this.bottom};
+    const bottomRight={x:this.right,y:this.bottom};
+    this.borders=[
+            [topLeft,bottomLeft],
+            [topRight,bottomRight]
+     ];
+    // console.log(this.borders)
+  }
+
+  getlaneCenter(laneIndex){
+    const laneWidth = this.width/this.lanecount;
+    return this.left+laneWidth/2+
+    Math.min(laneIndex,this.lanecount-1)*laneWidth
+  }
+
+  draw(ctx){
+    ctx.lineWidth  = 5;
+    
+    for(let i = -1; i < this.lanecount;i++){
+      const x = lerp(
+        this.left,
+        this.right,
+        i/this.lanecount
+        );
+       
+        ctx.setLineDash([20,20]);
+            ctx.strokeStyle="white";
+            ctx.beginPath();
+            ctx.moveTo(x,this.top);
+            ctx.lineTo(x,this.bottom);
+            ctx.stroke();
+          }
+          
+          
+          // ctx.setLineDash([]);
+          this.borders.forEach(border=>{
+            ctx.beginPath();
+            ctx.strokeStyle="white";
+            ctx.setLineDash([]);
+            ctx.moveTo(border[0].x,border[0].y);
+            ctx.lineTo(border[1].x,border[1].y);
+            ctx.stroke();
+        });
+
+  }
+}
+export default Road;

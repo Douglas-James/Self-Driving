@@ -1,0 +1,19 @@
+// if(localStorage.getItem('bestBrain')){
+//    bestcar.brain = JSON.parse(
+//     localStorage.getItem('bestBrain')
+//    )
+// }
+
+
+// save localStorage
+// function save(){
+//   localStorage.setItem('bestBrain', 
+//       JSON.stringify(bestcar.brain)
+//   );
+// }
+
+// // discard
+// function discard(){
+//   localStorage.removeItem("bestBrain");
+//   localStorage.clear("bestBrain");
+// }
