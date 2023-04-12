@@ -4,6 +4,8 @@ import Road from "./road";
 import visualizeNetworks from "./visualizeNetwork";
 import { NeuralNetwork } from "./network";
 
+
+
 // pause car movement 
 const pauseAnimation = document.querySelector('#paused__car');
 const youtouch = document.querySelector(".touch")
